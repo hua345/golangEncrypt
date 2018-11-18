@@ -20,24 +20,28 @@ func main() {
 	encryptData, err := RsaEncrypt(data, PublicKey)
 	if err != nil {
 		fmt.Println("encrypt err:", err)
+		return
 	}
 	fmt.Println("encryptData:", encryptData)
 	//rsa解密
 	decryptData, err := RsaDecrypt(encryptData, PrivateKey)
 	if err != nil {
 		fmt.Println("decrypt err:", err)
+		return
 	}
 	fmt.Println("decryptData:", decryptData)
 	//加签
 	signData, err := RsaSignWithSha1Base64(data, PrivateKey)
 	if err != nil {
 		fmt.Println("sign err:", err)
+		return
 	}
 	fmt.Println("signData:", signData)
 	//验签
 	verifyResult := RsaVerySignWithSha1Base64(signData, data, PublicKey)
 	if verifyResult != nil {
 		fmt.Println("verify failed:", verifyResult)
+		return
 	}
 	fmt.Println("verifyResult:", verifyResult)
 	//AES加解密
