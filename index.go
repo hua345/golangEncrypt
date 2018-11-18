@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+
 	//原始数据
 	var data = []byte("fang")
 	//md5
@@ -15,7 +16,6 @@ func main() {
 	hash.Write(data)
 	encryptedData := hash.Sum(nil)
 	fmt.Println("md5:", hex.EncodeToString(encryptedData))
-
 	//rsa加密
 	encryptData, err := RsaEncrypt(data, PublicKey)
 	if err != nil {
@@ -40,4 +40,6 @@ func main() {
 		fmt.Println("verify failed:", verifyResult)
 	}
 	fmt.Println("verifyResult:", verifyResult)
+	//AES加解密
+	AesTest()
 }
